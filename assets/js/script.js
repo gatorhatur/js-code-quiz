@@ -1,7 +1,6 @@
 //question tracking
 //timer
 
-console.log("I am working");
 var quizHeaderEl = document.querySelector(".quiz-header");
 var quizContentEl = document.querySelector(".quiz-content");
 var quizFooterEl = document.querySelector(".quiz-footer");
@@ -9,6 +8,7 @@ var highScoreEl = document.querySelector(".high-score");
 var timerEl = document.querySelector(".timer");
 
 var timer = 75;
+
 
 var countDown = function () {
     if (timer > 0) {
@@ -18,9 +18,11 @@ var countDown = function () {
     }
     else {
         console.log("ran out of time");
+        clearInterval();
         return
     }
 };
+
 
 var questionObj = [
     { //object contains the question, the index of the answer from choices, will give an Id to each choice associated to its position within the array.
@@ -105,6 +107,6 @@ var setHighScore = function () {
 
 ///////////////////////////////////
 //Add listener for the main area
-setInterval(countDown, 1000);
+//setInterval(countDown, 1000);
 quizContentEl.addEventListener("click", quizContentHandler);
 highScoreEl.addEventListener("click", quizContentHandler);
