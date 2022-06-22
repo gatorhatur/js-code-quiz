@@ -6,15 +6,18 @@ var quizHeaderEl = document.querySelector(".quiz-header");
 var quizContentEl = document.querySelector(".quiz-content");
 var quizFooterEl = document.querySelector(".quiz-footer");
 var highScoreEl = document.querySelector(".high-score");
+var timerEl = document.querySelector(".timer");
+
+var timer = 75;
 
 var questionObj = [
     { //object contains the question, the index of the answer from choices, will give an Id to each choice associated to its position within the array.
-        question: "This is a question",
+        question: "Arrays in JavaScript can be used to store ____",
         answer: 2,
-        choice: ["1", "2", "3", "4"]
+        choice: ["numbers and strings", "2", "3", "4"]
     },
     {
-        question: "This is a question",
+        question: "Commonly used data types",
         answer: 2,
         choice: ["1", "2", "3", "4"]
     },
@@ -43,6 +46,10 @@ var setQuizContent = function (element) {
 
 };
 
+var buildHighScores = function (hsArray) {
+    
+};
+
 var buildQuizChoices = function (choiceArray) {
     var listEL = document.createElement("ol");
     
@@ -57,6 +64,18 @@ var buildQuizChoices = function (choiceArray) {
     console.log(listEL);
     //need to make a best decision on how I want to return it
     return quizContentEl.replaceChild(listEL);
+};
+
+var resetGame = function () { //resets page to default screen
+    
+};
+
+var clearHighScores = function () {
+    localStorage.removeItem("high-scores");
+};
+
+var setHighScore = function () {
+    
 };
 
 

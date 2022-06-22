@@ -14,17 +14,21 @@ header {
     padding: 25px;
 }
 
+section {
+    display: flex;
+    justify-content: center;
+}
+
 .quiz-wrapper {
     display: flex;
     flex-wrap: wrap;
-    justify-content:center;
-    align-content: center;
     padding: 50px;
     width: 70%;
 }
 
 .quiz-header {
-    padding: 10px;
+    padding: 10px 0px;
+    font-size: 36px;
 }
 
 .quiz-footer {
