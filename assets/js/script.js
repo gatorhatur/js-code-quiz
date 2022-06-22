@@ -13,6 +13,7 @@ var timer = 75;
 var countDown = function () {
     if (timer > 0) {
         timer--;
+        timerEl.textContent = timer;
         console.log(timer);
     }
     else {
