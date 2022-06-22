@@ -10,6 +10,17 @@ var timerEl = document.querySelector(".timer");
 
 var timer = 75;
 
+var countDown = function () {
+    if (timer > 0) {
+        timer--;
+        console.log(timer);
+    }
+    else {
+        console.log("ran out of time");
+        return
+    }
+};
+
 var questionObj = [
     { //object contains the question, the index of the answer from choices, will give an Id to each choice associated to its position within the array.
         question: "Arrays in JavaScript can be used to store ____",
@@ -93,5 +104,6 @@ var setHighScore = function () {
 
 ///////////////////////////////////
 //Add listener for the main area
+setInterval(countDown, 1000);
 quizContentEl.addEventListener("click", quizContentHandler);
 highScoreEl.addEventListener("click", quizContentHandler);
