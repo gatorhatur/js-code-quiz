@@ -209,8 +209,10 @@ var buildQuizChoices = function (choiceArray) {
     setQuizContent(listEL);
 };
 
-var resetGame = function () { //resets page to default screen
-    timerEl.textContent = 75;
+var resetGame = function () {//resets page to default screen
+    currentQuestion = 0;
+    timer = 75; 
+    timerEl.textContent = timer;
     setQuizHeader("Coding Quiz Challenge<p style='font-size:20px'>Try to answer the following code related questions within the time limit. Keep in mind incorrect answers will penalized your score/time by 10 seconds");
     startButtonEl = document.createElement("button");
     startButtonEl.textContent = "Start Quiz";
@@ -229,7 +231,8 @@ var clearHighScores = function () {
 };
 
 //ISSUE -- refactor to make the scoreObj global
-var setHighScore = function (highScore,initial) {
+var setHighScore = function (highScore, initial) {
+    debugger;
     var score = localStorage.getItem("high-scores");
     console.log(score);
     if (!score) {
@@ -255,7 +258,7 @@ var setHighScore = function (highScore,initial) {
         }
     }
 
-    if (scoreObj.length > 9) {
+    if (scoreObj.length > 10) {
         //only want to keep the to 10 scores
         console.log("popped array");
         scoreObj.pop();
