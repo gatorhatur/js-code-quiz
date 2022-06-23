@@ -79,6 +79,9 @@ var quizContentHandler = function (event) {
         if (timer - 10 > 0) {
             timer -= 10;
         }
+        else {
+            timer = 0;
+        }
         
     }
 
@@ -129,14 +132,14 @@ var buildScoreSubmit = function () {
     var formEl = document.createElement("form");
     var divEl = document.createElement("div");
     divEl.className = "score-form";
-    //create input form
+    //create input form and add to content area
     var inputEl = document.createElement("input");
     inputEl.setAttribute("type", "text");
     inputEl.setAttribute("name", "initials");
     inputEl.setAttribute("placeholder", "Enter Initials");
     inputEl.setAttribute("style", "margin-right:10px;font-size:24px;padding:10px");
     divEl.appendChild(inputEl);
-    //create submit button
+    //create submit button and content area
     var buttonEl = document.createElement("button");
     buttonEl.className = "button";
     buttonEl.setAttribute("id", "submit");
