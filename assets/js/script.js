@@ -62,9 +62,16 @@ var quizContentHandler = function (event) {
     }
     else if (event.target.getAttribute("id") === "back") {
         //reset game
+        resetGame();
+        return;
     }
     else if (event.target.getAttribute("id") === "clear") {
         clearHighScores();
+        resetGame();
+        return;
+    }
+    else if (event.target.className === "high-score") {
+        buildHighScores();
         return;
     }
 
@@ -126,8 +133,15 @@ var setQuizContent = function (element) {
 };
 
 var buildHighScores = function (hsArray) {
+
+    if (!hsArray) {
+        var score = localStorage.getItem("high-scores");
+        hsArray = JSON.parse(score);
+    }
+
     setQuizHeader("High Scores");
     var scoreOlEl = document.createElement("ol");
+    scoreOlEl.className = "hs-table";
     for (var i = 0; i < hsArray.length; i++){
         console.log(hsArray[i]);
         var scoreLiEl = document.createElement("li");
@@ -137,6 +151,18 @@ var buildHighScores = function (hsArray) {
     }
     quizContentEl.replaceChildren(scoreOlEl);
     //create buttons and deploy after list
+    //create restart button
+    var backButtonEl = document.createElement("button");
+    backButtonEl.className = "button";
+    backButtonEl.setAttribute("id", "back");
+    backButtonEl.textContent = "Go back";
+    quizContentEl.appendChild(backButtonEl);
+    //create clear high scores button
+    var clearButtonEl = document.createElement("button");
+    clearButtonEl.className = "button";
+    clearButtonEl.setAttribute("id", "clear");
+    clearButtonEl.textContent = "Clear high scores";
+    quizContentEl.appendChild(clearButtonEl);
 };
 
 var buildScoreSubmit = function () {
@@ -184,6 +210,7 @@ var buildQuizChoices = function (choiceArray) {
 };
 
 var resetGame = function () { //resets page to default screen
+    timerEl.textContent = 75;
     setQuizHeader("Coding Quiz Challenge<p style='font-size:20px'>Try to answer the following code related questions within the time limit. Keep in mind incorrect answers will penalized your score/time by 10 seconds");
     startButtonEl = document.createElement("button");
     startButtonEl.textContent = "Start Quiz";
@@ -201,6 +228,7 @@ var clearHighScores = function () {
     }
 };
 
+//ISSUE -- refactor to make the scoreObj global
 var setHighScore = function (highScore,initial) {
     var score = localStorage.getItem("high-scores");
     console.log(score);
@@ -208,7 +236,7 @@ var setHighScore = function (highScore,initial) {
         var scoreObj = [{score:highScore,initials:initial}]
         console.log(scoreObj);
         localStorage.setItem("high-scores", JSON.stringify(scoreObj));
-        return;
+        return buildHighScores(scoreObj);
     }
 
     var scoreObj = JSON.parse(score);
@@ -244,5 +272,6 @@ var setHighScore = function (highScore,initial) {
 //Add listener for the main area
 //setInterval(countDown, 1000);
 resetGame();
-quizContentEl.addEventListener("click", quizContentHandler);
 highScoreEl.addEventListener("click", quizContentHandler);
+quizContentEl.addEventListener("click", quizContentHandler);
+
