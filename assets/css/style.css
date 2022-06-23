@@ -29,6 +29,7 @@ section {
 .quiz-header {
     padding: 10px 0px;
     font-size: 36px;
+    flex: 1 100%
 }
 
 .quiz-footer {
@@ -37,4 +38,14 @@ section {
     border-top: solid 2px gray;
     flex: 1 100%;
     
+}
+
+.button {
+    background-color:indigo;
+    color:white;
+    font-size: 24px;
+    padding: 10px;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    border: none;
 }
