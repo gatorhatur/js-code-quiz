@@ -41,9 +41,7 @@ section {
     font-weight: normal;
 }
 
-/* .quiz-content {
-    flex: 2 50%;
-} */
+
 
 footer{
     flex:1 100%;
@@ -65,4 +63,16 @@ footer{
     border-radius: 10px;
     margin-bottom: 10px;
     border: none;
+}
+
+.hs-table {
+    flex: 2 50%;
+}
+
+.hs-entry {
+    background-color: rgb(105, 86, 119);
+    flex:1 100%;
+    padding: 5px;
+    font-size: 24px;
+    margin-bottom: 10px;
 }

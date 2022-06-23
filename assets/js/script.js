@@ -126,7 +126,17 @@ var setQuizContent = function (element) {
 };
 
 var buildHighScores = function (hsArray) {
-    
+    setQuizHeader("High Scores");
+    var scoreOlEl = document.createElement("ol");
+    for (var i = 0; i < hsArray.length; i++){
+        console.log(hsArray[i]);
+        var scoreLiEl = document.createElement("li");
+        scoreLiEl.className = "hs-entry";
+        scoreLiEl.textContent = hsArray[i].initials + " - " + hsArray[i].score;
+        scoreOlEl.appendChild(scoreLiEl);
+    }
+    quizContentEl.replaceChildren(scoreOlEl);
+    //create buttons and deploy after list
 };
 
 var buildScoreSubmit = function () {
@@ -217,13 +227,17 @@ var setHighScore = function (highScore,initial) {
         }
     }
 
-    if (scoreObj.length > 10) { //only want to keep the to 10 scores
+    if (scoreObj.length > 9) {
+        //only want to keep the to 10 scores
+        console.log("popped array");
         scoreObj.pop();
     }
     console.log(scoreObj);
 
     localStorage.setItem("high-scores", JSON.stringify(scoreObj)); 
-    //will need to travers the array and put them in order by score
+    //pass the object in the scope of the set high scores so we can save code on loading the data from
+    //memory again
+    buildHighScores(scoreObj);
 };
 
 ///////////////////////////////////
