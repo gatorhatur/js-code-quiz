@@ -3,13 +3,11 @@
 
 var quizHeaderEl = document.querySelector(".quiz-header");
 var quizContentEl = document.querySelector(".quiz-content");
-var quizFooterEl = document.querySelector(".quiz-footer");
+var quizFooterEl = document.querySelector("footer");
 var highScoreEl = document.querySelector(".high-score");
 var timerEl = document.querySelector(".timer");
 
 var timer = 75;
-
-
 
 var questionBankObj = [
     { //object contains the question, the index of the answer from choices, will give an Id to each choice associated to its position within the array.
@@ -37,7 +35,7 @@ var countDown = function () {
         timer--;
         timerEl.textContent = timer;
         timeout = setTimeout(countDown, 1000);
-        console.log(timer);
+        //console.log(timer);
     }
     else {
         console.log("ran out of time");
@@ -86,11 +84,13 @@ var quizContentHandler = function (event) {
         console.log("out questions!");
         clearTimeout(timeout);
         //end game summary
-        buildScoreSubmit();
+        setTimeout(buildScoreSubmit,2000);
+        setQuizFooter("clear");
     }
     else {
         //next question
         buildQuestion(questionBankObj[currentQuestion]);
+        return
     }
     
 };
@@ -101,7 +101,15 @@ var setQuizHeader = function (content) {
 };
 
 var setQuizFooter = function (content) {
-    quizFooterEl.textContent = content;
+    if (content === "clear") {
+        quizFooterEl.remove();
+        return;
+    }
+    var footerContentEl = document.createElement("h2");
+    footerContentEl.className = "quiz-footer"
+    footerContentEl.textContent = content;
+    quizFooterEl.replaceChildren(footerContentEl);
+    
 };
 
 var setQuizContent = function (element) {
@@ -122,12 +130,16 @@ var buildScoreSubmit = function () {
     inputEl.setAttribute("type", "text");
     inputEl.setAttribute("name", "initials");
     inputEl.setAttribute("placeholder", "Enter Initials");
+    inputEl.setAttribute("style", "margin-right:10px;font-size:24px;padding:10px");
     divEl.appendChild(inputEl);
     //create submit button
     var buttonEl = document.createElement("button");
     buttonEl.className = "button";
     buttonEl.setAttribute("id", "submit");
+    buttonEl.textContent = "Submit";
     divEl.appendChild(buttonEl);
+
+    setQuizContent(divEl);
 };
 
 var buildQuestion = function (questionObj) {
