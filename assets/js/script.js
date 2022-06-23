@@ -8,6 +8,8 @@ var highScoreEl = document.querySelector(".high-score");
 var timerEl = document.querySelector(".timer");
 
 var timer = 75;
+var currentQuestion = 0;
+var timeout;
 
 var questionBankObj = [
     { //object contains the question, the index of the answer from choices, will give an Id to each choice associated to its position within the array.
@@ -26,9 +28,6 @@ var questionBankObj = [
         choice: ["1", "2", "3", "4"]
     }
 ];
-
-var currentQuestion = 0;
-var timeout;
 
 var countDown = function () {
     if (timer > 0) {
@@ -77,7 +76,10 @@ var quizContentHandler = function (event) {
     else {
         console.log("wrong!");
         setQuizFooter("Incorrect!");
-        timer -= 10;
+        if (timer - 10 > 0) {
+            timer -= 10;
+        }
+        
     }
 
     currentQuestion++;
