@@ -37,6 +37,7 @@ section {
     font-style: italic;
     border-top: solid 2px gray;
     flex: 1 100%;
+    margin-top: 10px;
     
 }
 

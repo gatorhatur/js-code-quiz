@@ -66,6 +66,7 @@ var quizContentHandler = function (event) {
     }
     else if (event.target.getAttribute("id") === "clear") {
         clearHighScores();
+        return;
     }
 
     var correct = parseInt(event.target.getAttribute("data-answer-id")) === questionBankObj[currentQuestion].answer
@@ -85,6 +86,7 @@ var quizContentHandler = function (event) {
         console.log("out questions!");
         clearTimeout(timeout);
         //end game summary
+        buildScoreSubmit();
     }
     else {
         //next question
@@ -108,6 +110,24 @@ var setQuizContent = function (element) {
 
 var buildHighScores = function (hsArray) {
     
+};
+
+var buildScoreSubmit = function () {
+    setQuizHeader("All Done!<p>Your final score is " + timer + ".");
+    var formEl = document.createElement("form");
+    var divEl = document.createElement("div");
+    divEl.className = "score-form";
+    //create input form
+    var inputEl = document.createElement("input");
+    inputEl.setAttribute("type", "text");
+    inputEl.setAttribute("name", "initials");
+    inputEl.setAttribute("placeholder", "Enter Initials");
+    divEl.appendChild(inputEl);
+    //create submit button
+    var buttonEl = document.createElement("button");
+    buttonEl.className = "button";
+    buttonEl.setAttribute("id", "submit");
+    divEl.appendChild(buttonEl);
 };
 
 var buildQuestion = function (questionObj) {
