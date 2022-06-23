@@ -57,6 +57,8 @@ var quizContentHandler = function (event) {
     }
     else if (event.target.getAttribute("id") === "submit") {
         //update high scores
+        var initialInput = document.querySelector("input[name='initials']").value;
+        setHighScore(timer, initialInput);
         return;
     }
     else if (event.target.getAttribute("id") === "back") {
@@ -183,13 +185,22 @@ var clearHighScores = function () {
 };
 
 var setHighScore = function (highScore,initial) {
-    var score = localStorage.getItem("high-scores");
+    var score = [localStorage.getItem("high-scores")];
+    console.log(score);
     if (!score) {
-        localStorage.setItem("high-scores", [highScore,initial]);
+        localStorage.setItem("high-scores", JSON.stringify([{ score: highScore, initials: initial }]));
         return;
     }
 
-    score = JSON.parse(score);
+    for (var i = 0; i < score.length; i++){
+        if (highScore >= score[i]) {
+            var Obj = [{ score: highScore, initials: initial }];
+            score.splice(i, 0, Obj);
+        }
+    }
+    console.log(score);
+
+    localStorage.setItem("high-scores", JSON.stringify(score)); 
     //will need to travers the array and put them in order by score
 };
 
