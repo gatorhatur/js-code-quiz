@@ -90,6 +90,7 @@ var quizContentHandler = function (event) {
     if (currentQuestion >= questionBankObj.length) {
         console.log("out questions!");
         clearTimeout(timeout);
+        timerEl.textContent = timer;
         //end game summary
         setTimeout(setQuizFooter, 1500,"clear");
         buildScoreSubmit();
@@ -191,22 +192,33 @@ var clearHighScores = function () {
 };
 
 var setHighScore = function (highScore,initial) {
-    var score = [localStorage.getItem("high-scores")];
+    var score = localStorage.getItem("high-scores");
     console.log(score);
     if (!score) {
-        localStorage.setItem("high-scores", JSON.stringify([{ score: highScore, initials: initial }]));
+        var scoreObj = [{score:highScore,initials:initial}]
+        console.log(scoreObj);
+        localStorage.setItem("high-scores", JSON.stringify(scoreObj));
         return;
     }
 
-    for (var i = 0; i < score.length; i++){
-        if (highScore >= score[i]) {
+    var scoreObj = JSON.parse(score);
+    console.log(scoreObj);
+    for (var i = 0; i < scoreObj.length; i++){
+        console.log(scoreObj[i].score);
+        if (parseInt(highScore) >= parseInt(scoreObj[i].score)) {
             var Obj = [{ score: highScore, initials: initial }];
-            score.splice(i, 0, Obj);
+            scoreObj.splice(i, 0, Obj[0]);
+            break;
+        }
+
+        if (i === scoreObj.length - 1) { //catches lowest score
+            var Obj = [{ score: highScore, initials: initial }];
+            scoreObj.push(Obj[0]);
         }
     }
-    console.log(score);
+    console.log(scoreObj);
 
-    localStorage.setItem("high-scores", JSON.stringify(score)); 
+    localStorage.setItem("high-scores", JSON.stringify(scoreObj)); 
     //will need to travers the array and put them in order by score
 };
 
