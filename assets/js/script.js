@@ -232,7 +232,6 @@ var clearHighScores = function () {
 
 //ISSUE -- refactor to make the scoreObj global
 var setHighScore = function (highScore, initial) {
-    debugger;
     var score = localStorage.getItem("high-scores");
     console.log(score);
     if (!score) {

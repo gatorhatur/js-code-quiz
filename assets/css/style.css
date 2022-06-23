@@ -67,6 +67,10 @@ footer{
     list-style-position: inside;
 }
 
+.quiz-content {
+    justify-content: space-between;
+}
+
 
 /*ISSUE - solve for list items not stretching the length of the*/
 .hs-table {
