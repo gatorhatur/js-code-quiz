@@ -216,6 +216,10 @@ var setHighScore = function (highScore,initial) {
             scoreObj.push(Obj[0]);
         }
     }
+
+    if (scoreObj.length > 10) { //only want to keep the to 10 scores
+        scoreObj.pop();
+    }
     console.log(scoreObj);
 
     localStorage.setItem("high-scores", JSON.stringify(scoreObj)); 
