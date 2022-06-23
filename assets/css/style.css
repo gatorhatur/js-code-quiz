@@ -22,7 +22,7 @@ section {
 .quiz-wrapper {
     display: flex;
     flex-wrap: wrap;
-    padding: 50px;
+    padding: 5% 10%;
     width: 70%;
 }
 
@@ -32,9 +32,9 @@ section {
     flex: 1 100%
 }
 
-footer{
+/* footer{
     flex:1 100%;
-}
+} */
 
 .quiz-footer {
     color: gray;
