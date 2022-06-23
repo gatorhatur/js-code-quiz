@@ -14,6 +14,10 @@ header {
     padding: 25px;
 }
 
+header .high-score {
+    color:indigo;
+}
+
 section {
     display: flex;
     justify-content: center;
@@ -32,13 +36,18 @@ section {
     flex: 1 100%
 }
 
+.quiz-header p {
+    font-size: 24px;
+    font-weight: normal;
+}
+
 /* .quiz-content {
     flex: 2 50%;
 } */
 
-/* footer{
+footer{
     flex:1 100%;
-} */
+}
 
 .quiz-footer {
     color: gray;
