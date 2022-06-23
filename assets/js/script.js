@@ -91,8 +91,9 @@ var quizContentHandler = function (event) {
         console.log("out questions!");
         clearTimeout(timeout);
         //end game summary
-        setTimeout(buildScoreSubmit,2000);
-        setQuizFooter("clear");
+        setTimeout(setQuizFooter, 1500,"clear");
+        buildScoreSubmit();
+        
     }
     else {
         //next question
