@@ -15,18 +15,28 @@ var timeout;
 var questionBankObj = [
     { //object contains the question, the index of the answer from choices, will give an Id to each choice associated to its position within the array.
         question: "Arrays in JavaScript can be used to store ____",
-        answer: 2,
-        choice: ["numbers and strings", "2", "3", "4"]
+        answer: 3,
+        choice: ["numbers and strings", "other arrays", "booleans", "all of the above"]
     },
     {
-        question: "Commonly used data types",
+        question: "Commonly used data types DO NOT include:",
         answer: 2,
-        choice: ["1", "2", "3", "4"]
+        choice: ["strings", "booleans", "alerts", "numbers"]
     },
     {
-        question: "This is a question",
+        question: "The condition in an if / else statement is enclosed with ____",
         answer: 2,
-        choice: ["1", "2", "3", "4"]
+        choice: ["quotes", "curly brackets", "parenthesis", "square brackets"]
+    },
+    {
+        question: "String values must be enclosed within ____ when being assigned to variables",
+        answer: 2,
+        choice: ["commas", "curly brackets", "quotes", "parenthesis"]
+    },
+    {
+        question: "A very useful tool used during development and debugging for printing content to the debugger is",
+        answer: 3,
+        choice: ["JavaScript", "terminal/bash", "for loops", "console.log"]
     }
 ];
 
