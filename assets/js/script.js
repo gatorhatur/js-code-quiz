@@ -6,6 +6,7 @@ var quizContentEl = document.querySelector(".quiz-content");
 var quizFooterEl = document.querySelector("footer");
 var highScoreEl = document.querySelector(".high-score");
 var timerEl = document.querySelector(".timer");
+var headerEl = document.querySelector("header");
 
 var timer = 75;
 var currentQuestion = 0;
@@ -134,29 +135,41 @@ var setQuizContent = function (element) {
 
 var buildHighScores = function (hsArray) {
 
+    
+    headerEl.setAttribute("style", "display:none");
+
     if (!hsArray) {
         var score = localStorage.getItem("high-scores");
         hsArray = JSON.parse(score);
     }
 
     setQuizHeader("High Scores");
-    var scoreOlEl = document.createElement("ol");
-    scoreOlEl.className = "hs-table";
-    for (var i = 0; i < hsArray.length; i++){
-        console.log(hsArray[i]);
-        var scoreLiEl = document.createElement("li");
-        scoreLiEl.className = "hs-entry";
-        scoreLiEl.textContent = hsArray[i].initials + " - " + hsArray[i].score;
-        scoreOlEl.appendChild(scoreLiEl);
-    }
-    quizContentEl.replaceChildren(scoreOlEl);
-    //create buttons and deploy after list
-    //create restart button
+
     var backButtonEl = document.createElement("button");
     backButtonEl.className = "button";
     backButtonEl.setAttribute("id", "back");
     backButtonEl.textContent = "Go back";
-    quizContentEl.appendChild(backButtonEl);
+
+    if (hsArray) {
+        var scoreOlEl = document.createElement("ol");
+        scoreOlEl.className = "hs-table";
+        for (var i = 0; i < hsArray.length; i++) {
+            console.log(hsArray[i]);
+            var scoreLiEl = document.createElement("li");
+            scoreLiEl.className = "hs-entry";
+            scoreLiEl.textContent = hsArray[i].initials + " - " + hsArray[i].score;
+            scoreOlEl.appendChild(scoreLiEl);
+        }
+        quizContentEl.replaceChildren(scoreOlEl);
+        //create buttons and deploy after list
+        //create restart button
+        quizContentEl.appendChild(backButtonEl);
+    }
+    else { //accounts for if you check high scores when there are none
+        quizContentEl.replaceChildren(backButtonEl);
+    }
+    
+    
     //create clear high scores button
     var clearButtonEl = document.createElement("button");
     clearButtonEl.className = "button";
@@ -210,10 +223,12 @@ var buildQuizChoices = function (choiceArray) {
 };
 
 var resetGame = function () {//resets page to default screen
+    
+    headerEl.removeAttribute("style");
     currentQuestion = 0;
     timer = 75; 
     timerEl.textContent = timer;
-    setQuizHeader("Coding Quiz Challenge<p style='font-size:20px'>Try to answer the following code related questions within the time limit. Keep in mind incorrect answers will penalized your score/time by 10 seconds");
+    setQuizHeader("Coding Quiz Challenge<p style='font-size:20px'>Try to answer the following code related questions within the time limit. Keep in mind incorrect answers will penalize your score/time by 10 seconds");
     startButtonEl = document.createElement("button");
     startButtonEl.textContent = "Start Quiz";
     startButtonEl.className = "button";

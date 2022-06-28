@@ -71,8 +71,6 @@ footer{
     justify-content: space-between;
 }
 
-
-/*ISSUE - solve for list items not stretching the length of the*/
 .hs-table {
     flex: 2 50%;
 }
@@ -84,4 +82,8 @@ footer{
     font-size: 24px;
     margin-bottom: 10px;
     list-style-position: inside;
+}
+
+.button:hover {
+    background-color: blueviolet;
 }
