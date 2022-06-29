@@ -1,6 +1,7 @@
 # JavaScript Code Quiz
 
 ## Purpose
+Practice the use of query selectors and DOM manipulation to deliver a quiz. You will notice only the HTML structure is used as a placeholder for filling content.
 
 ## Code Sample
 ![Code Snippet of the buildScoreSubmit function expression](/assets/images/snippet.jpg)
